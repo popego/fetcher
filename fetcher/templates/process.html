@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block javascript %}
+<script type="text/javascript">
+function showContent(obj) {
+    var inner = obj.parentNode.getElementsByTagName("div")[0];
+    if (inner.style.display == "none")
+        inner.style.display = "";
+    else
+        inner.style.display = "none";
+    }
+</script>
+{% endblock %}
+
+{% block user %}
+{% if user.is_authenticated %}
+<div>
+    {{ user }}
+    <a href="/logout/">Logout</a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block main_content %}
+<div>
+    <h2>Processing...</h2>
+    <p>Number of instances: {{ instance_num }} </p>
+    <div>
+        <h3>Content</h3>
+        <div class="file_content">
+            <input type="button" onclick="showContent(this);" value="Show/Hide" />
+            <div class="inner" style="display:none">
+                {{ seed_content }}
+            </div>
+        </div>
+        <h3>Your job_id is:</h3>
+        {{ job_id }}
+        <p>Remember this job_id to re-enter the status page of this fetch request through
+        /process/*job_id*, and setting it to stop processing, add machine, or check status</p>
+    </div>
+</div>
+<a href="/process/{{ job_id }}/add_machine">Add machine</a></b>
+<a href="/process/{{ job_id }}/stop">Stop processing</a></b>
+{% endblock %}

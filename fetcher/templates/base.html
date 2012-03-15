@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>fetcher</title>
+        {% block javascript %}
+        {% endblock %}
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+            </div>
+            <div id="user">{% block user %}{% endblock %}
+            </div>
+        </div>
+
+        <div id="main">
+            {% block main_content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
+
